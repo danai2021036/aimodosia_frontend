@@ -21,7 +21,7 @@ const applicationStore = useApplicationStore();
                         >Home</router-link
                         >
                     </li>
-                    <li class="nav-item" v-if="applicationStore.isAuthenticated === true">
+                    <li class="nav-item" v-if="applicationStore.isAuthenticated === true" >
                         <div class="nav-item dropdown">
                             <a
                             class="nav-link dropdown-toggle text-white"
@@ -34,9 +34,16 @@ const applicationStore = useApplicationStore();
                                 Aimodotes
                             </a>
                             <div class="dropdown-menu" aria-labelledby="aimodotisDropdown">
-                                <router-link :to="{name:'aimodotes'}" class="dropdown-item">
-                                    Show Aimodotes
-                                </router-link>
+                                <div v-if="applicationStore.userRole.includes('admin') || applicationStore.userRole.includes('secretary')">
+                                    <router-link :to="{name:'aimodotes'}" class="dropdown-item">
+                                        Show Aimodotes
+                                    </router-link>
+                                </div>
+                                <div v-if="!applicationStore.userRole.includes('admin') && !applicationStore.userRole.includes('secretary') && !applicationStore.userRole.includes('aimodotis')">
+                                    <router-link :to="{name:'confirm-contact-info'}" class="dropdown-item">
+                                        Confirm Contact Info
+                                    </router-link>
+                                </div>
                             </div>
                         </div>
                     </li>
@@ -53,14 +60,17 @@ const applicationStore = useApplicationStore();
                                 Application Form
                             </a>
                             <div class="dropdown-menu" aria-labelledby="appformDropdown">
-                                <router-link :to="{name:'appform-new'}" class="dropdown-item">
-                                    Become a blood donor!
-                                </router-link>
-                                <router-link :to="{name:'appforms-pending'}" class="dropdown-item">
-                                    Pending Applications
-                                </router-link>
+                                <div v-if="!applicationStore.userRole.includes('admin') && !applicationStore.userRole.includes('secretary') && !applicationStore.userRole.includes('aimodotis')">
+                                    <router-link :to="{name:'appform-new'}" class="dropdown-item">
+                                        Become a blood donor!
+                                    </router-link>
+                                </div>
+                                <div v-if="applicationStore.userRole.includes('secretary')">
+                                    <router-link :to="{name:'appforms-pending'}" class="dropdown-item">
+                                        Pending Applications
+                                    </router-link>
+                                </div>
                             </div>
-
                         </div>
                     </li>
                     <li class="nav-item" v-if="applicationStore.isAuthenticated === true">
@@ -85,7 +95,7 @@ const applicationStore = useApplicationStore();
                             </div>
                         </div>
                     </li>
-                    <li class="nav-item" v-if="applicationStore.isAuthenticated === true">
+                    <li class="nav-item" v-if="applicationStore.isAuthenticated === true && applicationStore.userRole.includes('admin')">
                         <div class="nav-item dropdown">
                             <a
                                 class="nav-link dropdown-toggle text-white"

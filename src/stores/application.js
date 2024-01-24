@@ -17,7 +17,12 @@ export const useApplicationStore = defineStore('application', () => {
     const userData = ref(null);
 
     const setUserData = (tempUserData) => {
-        userData.value = tempUserData;
+        //userData.value = tempUserData;
+        const roles = tempUserData.roles || [];
+        userData.value = {
+            ...tempUserData,
+            roles: roles.map(role => role.replace('ROLE_', '').toLowerCase()), // Optional: Normalize role names
+        };
     };
     const persistUserData = () => {
         localStorage.setItem('userData', JSON.stringify(userData.value));
@@ -38,5 +43,9 @@ export const useApplicationStore = defineStore('application', () => {
         return checkJWT(userData.value?.accessToken);
     });
 
-    return { userData, setUserData, persistUserData, loadUserData, clearUserData, isAuthenticated };
+    const userRole = computed(() => {
+        return userData.value?.roles || [];
+    });
+
+    return { userData, setUserData, persistUserData, loadUserData, clearUserData, isAuthenticated, userRole};
 });

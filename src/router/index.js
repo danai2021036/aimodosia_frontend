@@ -63,19 +63,13 @@ const router = createRouter({
                     component: () => import('../views/ShowPendingAppFormDetailsView.vue'),
                     meta: { requiresAuth: true }
                 }
-                // {
-                //     path: '/accept',
-                //     name: 'appform-pending-accept',
-                //     //component: () => import('../views/ShowPendingAppFormDetailsView.vue'),
-                //     meta: { requiresAuth: true }
-                // },
-                // {
-                //     path: '/decline',
-                //     name: 'appform-pending-decline',
-                //     //component: () => import('../views/ShowPendingAppFormDetailsView.vue'),
-                //     meta: { requiresAuth: true }
-                // }
             ]
+        },
+        {
+            path: '/confirmcontactinfo',
+            name: 'confirm-contact-info',
+            component: () => import('../views/ConfirmContactInfoView.vue'),
+            meta: { requiresAuth: true }
         },
         {
             path: '/admin',
