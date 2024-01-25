@@ -25,20 +25,6 @@ const router = createRouter({
             component: () => import('../views/AimodotesView.vue'),
             meta: { requiresAuth: true }
         },
-        // {
-        //     path: '/aimodotes/:id',
-        //     name: 'aimodotis',
-        //     component: () => import('../views/AimodotisView.vue'),
-        //     meta: { requiresAuth: true }
-        //     children:[
-        //         {
-        //             path:'',
-        //             name:'aimodotis-details',
-        //             component: () => import('../views/AimodotisDetailsView.vue'),
-        //             meta: { requiresAuth: true }
-        //         }
-        //     ]
-        // },
         {
             path: '/appforms/new',
             name: 'appform-new',
@@ -84,9 +70,21 @@ const router = createRouter({
             meta: { requiresAuth: true }
         },
         {
-            path: '/donationrequests',
-            name: 'donationrequests',
-            component: () => import('../views/DonationRequestsView.vue'),
+            path: '/secretary/donationrequests',
+            name: 'show-donation-requests',
+            component: () => import('../views/ShowDonationRequestsView.vue'),
+            meta: { requiresAuth: true },
+        },
+        {
+            path: '/secretary/donationrequests/create',
+            name: 'create-donation-request',
+            component: () => import('../views/CreateNewDonationRequestView.vue'),
+            meta: { requiresAuth: true }
+        },
+        {
+            path: '/donationrequest/available',
+            name: 'available-donation-request',
+            component: () => import('../views/ShowAvailableDonationRequestView.vue'),
             meta: { requiresAuth: true }
         },
         {

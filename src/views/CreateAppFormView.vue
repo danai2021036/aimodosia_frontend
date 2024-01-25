@@ -65,8 +65,8 @@ const onSubmit = () => {
             <input class="form-control" id="location" v-model="formDataRef.aimodotis.location" type="text" />
         </div>
         <div class="mb-2">
-            <label for="lastdonation">Last Donation (yyyy-mm-dd)</label>
-            <input class="form-control" id="lastdonation" v-model="formDataRef.aimodotis.last_donation" type="text" />
+            <label for="lastdonation">Last Donation </label>
+            <input class="form-control" id="lastdonation" v-model="formDataRef.aimodotis.last_donation" type="date" />
         </div>
         <div class="mb-2">
             <label for="age">Age</label>
@@ -78,7 +78,7 @@ const onSubmit = () => {
         </div>
         <div class="mb-2">
             <label for="date">Blood Test Date</label>
-            <input class="form-control" id="date" v-model="formDataRef.bloodTest.date" type="text" />
+            <input class="form-control" id="date" v-model="formDataRef.bloodTest.date" type="date" />
         </div>
         <div class="mb-2">
             <label for="details">Blood Test Details</label>

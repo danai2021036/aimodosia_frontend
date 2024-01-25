@@ -73,7 +73,7 @@ const applicationStore = useApplicationStore();
                             </div>
                         </div>
                     </li>
-                    <li class="nav-item" v-if="applicationStore.isAuthenticated === true">
+                    <li class="nav-item" v-if="applicationStore.isAuthenticated === true && applicationStore.userRole.includes('admin') || applicationStore.userRole.includes('secretary') || applicationStore.userRole.includes('aimodotis')">
                         <div class="nav-item dropdown">
                             <a
                                 class="nav-link dropdown-toggle text-white"
@@ -83,15 +83,19 @@ const applicationStore = useApplicationStore();
                                 data-bs-toggle="dropdown"
                                 aria-haspopup="true"
                                 aria-expanded="false">
-                                Blood Donation
+                                Donation Requests
                             </a>
                             <div class="dropdown-menu" aria-labelledby="donationrequestDropdown">
-<!--                                <router-link :to="{name:'donationrequests'}" class="dropdown-item">-->
-<!--                                    New Donation Request-->
-<!--                                </router-link>-->
-<!--                                <router-link :to="{name:'donationrequests'}" class="dropdown-item">-->
-<!--                                    Availabe Donations-->
-<!--                                </router-link>-->
+                                <div v-if="applicationStore.userRole.includes('aimodotis')">
+                                    <router-link :to="{name:'available-donation-request'}" class="dropdown-item">
+                                        Available Donations
+                                    </router-link>
+                                </div>
+                                <div v-if="applicationStore.userRole.includes('admin') || applicationStore.userRole.includes('secretary')">
+                                    <router-link :to="{name:'show-donation-requests'}" class="dropdown-item" >
+                                        Show/Add Donation Requests
+                                    </router-link>
+                                </div>
                             </div>
                         </div>
                     </li>
