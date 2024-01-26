@@ -16,19 +16,7 @@ const { data, performRequest } = useRemoteData(urlRef, authRef, methodRef, formD
 
 const onSubmit = async () => {
     await performRequest();
-
-    // Check if the request was successful
-    // if (data && data.success) {
-    //     // Display a success message to the user
-    //     showMessage("Form submitted successfully!");
-    // } else {
-    //     // Display an error message to the user
-    //     showMessage("Form submission failed. Please try again.");
-    // }
 };
-// const showMessage = (message) => {
-//     alert(message); // You can use a different method to display the message, such as a modal or a dedicated message component
-// };
 </script>
 
 <template>

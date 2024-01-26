@@ -113,7 +113,7 @@ const applicationStore = useApplicationStore();
                             </a>
                             <div class="dropdown-menu" aria-labelledby="adminDropdown">
                                 <router-link :to="{name:'admin-users'}" class="dropdown-item">
-                                    Show Users
+                                    Edit Users
                                 </router-link>
                                 <router-link :to="{name:'admin-newuser'}" class="dropdown-item">
                                     New User

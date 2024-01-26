@@ -19,33 +19,30 @@ onMounted(() => {
 
 const token = store.userData.accessToken;
 
-const addAimodotis = async () => {
+const deleteUser = async (userid) => {
     try {
-        const response = await fetch(`http://localhost:9090/admin/addroles/${userIdRef.value}/${4}`, {
-        method: 'POST',
+        const response = await fetch(`http://localhost:9090/admin/user/delete/${userid}`, {
+            method: 'DELETE',
             headers: {
-            'Content-Type': 'application/json',
+                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`,
-        },
+            },
             body: JSON.stringify({}),
-    });
-    if (response.ok) {
-        const data = await response.json();
-        console.log(data); // Log the response data if needed
-        // Handle success, update UI or perform other actions
-        alert('Added Role Aimodotis!');
-    } else {
-        // Handle error
-        console.error('Error adding role Aimodotis !');
+        });
+        if (response.ok) {
+            const data = await response.json();
+            console.log(data); // Log the response data if needed
+            // Handle success, update UI or perform other actions
+            alert('User deleted successfully!');
+        } else {
+            const errordata = await response.text();
+            // Handle error
+            console.error('Error deleting user!', errordata);
+            alert('Error deleting user!');
+        }
+    } catch (error) {
+        console.error('An unexpected error occurred:', error);
     }
-} catch (error) {
-    console.error('An unexpected error occurred:', error);
-}
-};
-
-
-const updateId = (id) => {
-    userIdRef.value = id;
 };
 </script>
 
@@ -65,6 +62,8 @@ const updateId = (id) => {
                                 <th>Username</th>
                                 <th>Email</th>
                                 <th>Roles</th>
+                                <th>Edit User</th>
+                                <th>Delete User</th>
                             </tr>
                             </thead>
                             <tbody v-if="loading">
@@ -78,32 +77,24 @@ const updateId = (id) => {
                                     <td>{{ user.id }}</td>
                                     <td>{{ user.username }}</td>
                                     <td>{{ user.email }}</td>
-                                    <td>{{updateId(user.id)}}</td>
                                     <td>
-                                        <span v-for="role in user.roles" :key="role.id">
-                                            <span v-if="role.id!==2">
-                                                {{ role.name }}
-                                                , ROLE_USER
-                                            </span>
-                                        </span>
+                                        <RouterLink :to="{
+                                                name: 'user-details',
+                                                params: { id: user.id }}">
+                                            Edit Roles
+                                        </RouterLink>
                                     </td>
                                     <td>
-                                        <span v-if="user.roles.some(role => role.id === 3)">
-                                            <b-button @click="addAimodotis" class="btn btn-success">
-                                                Add Role Aimodotis
-                                            </b-button>
-                                            <b-button @click="deleteSecretary" class="btn btn-danger">
-                                                Delete Role Secretary
-                                            </b-button>
-                                        </span>
-                                        <span v-if="user.roles.some(role => role.id === 4)">
-                                            <b-button @click="addSecretary" class="btn btn-success">
-                                                Add Role Secretary
-                                            </b-button>
-                                            <b-button @click="deleteAimodotis" class="btn btn-danger">
-                                                Delete Role Aimodotis
-                                            </b-button>
-                                        </span>
+                                        <RouterLink :to="{
+                                                name: 'user-edit',
+                                                params: { id: user.id }}">
+                                            Edit User
+                                        </RouterLink>
+                                    </td>
+                                    <td>
+                                        <b-button @click="deleteUser(user.id)" class="btn btn-danger">
+                                            Delete User
+                                        </b-button>
                                     </td>
                                 </template>
                             </tr>
