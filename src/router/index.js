@@ -76,7 +76,7 @@ const router = createRouter({
                     meta: { requiresAuth: true }
                 },
                 {
-                    path: '',
+                    path: '/admin/users/:id/edit',
                     name: 'user-edit',
                     component: () => import('../views/EditUserView.vue'),
                     meta: { requiresAuth: true }
@@ -107,7 +107,12 @@ const router = createRouter({
             component: () => import('../views/ShowAvailableDonationRequestView.vue'),
             meta: { requiresAuth: true }
         },
-
+        {
+            path: '/aimodotis/edit',
+            name: 'edit-aimodotis-profile',
+            component: () => import('../views/EditAimodotisProfile.vue'),
+            meta: { requiresAuth: true }
+        },
         {
             path: '/login',
             name: 'login',

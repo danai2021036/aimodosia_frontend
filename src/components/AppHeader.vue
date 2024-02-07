@@ -22,7 +22,7 @@ const applicationStore = useApplicationStore();
                         >
                     </li>
                     <li class="nav-item" v-if="applicationStore.isAuthenticated === true" >
-                        <div class="nav-item dropdown">
+                        <div class="nav-item dropdown" v-if="!(applicationStore.userRole.includes('aimodotis') && applicationStore.userRole.includes('user'))">
                             <a
                             class="nav-link dropdown-toggle text-white"
                             href="#"
@@ -47,7 +47,7 @@ const applicationStore = useApplicationStore();
                             </div>
                         </div>
                     </li>
-                    <li class="nav-item" v-if="applicationStore.isAuthenticated === true">
+                    <li class="nav-item" v-if="applicationStore.isAuthenticated === true && !(applicationStore.userRole.includes('aimodotis') && applicationStore.userRole.includes('user'))">
                         <div class="nav-item dropdown">
                             <a
                                 class="nav-link dropdown-toggle text-white"
@@ -121,13 +121,34 @@ const applicationStore = useApplicationStore();
                             </div>
                         </div>
                     </li>
-                    <li class="nav-item" v-if="applicationStore.isAuthenticated === true">
-                        <router-link :to="{ name: 'profile' }" class="nav-link text-white"
-                        >Profile
-                            <span style="font-size: 10px"
+
+                    <li class="nav-item" v-if="applicationStore.isAuthenticated === true" >
+                        <div class="nav-item dropdown">
+                            <a
+                                class="nav-link dropdown-toggle text-white"
+                                href="#"
+                                id="profileDropdown"
+                                role="button"
+                                data-bs-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false">
+                                My Profile <span style="font-size: 10px"
                             >({{ applicationStore.userData?.username }})</span
-                            ></router-link
-                        >
+                            >
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                                <div>
+                                    <router-link :to="{ name: 'profile' }" class="dropdown-item"
+                                    >Profile
+                                        </router-link>
+                                </div>
+                                <div v-if="applicationStore.userRole.includes('aimodotis')">
+                                    <router-link :to="{name:'edit-aimodotis-profile'}" class="dropdown-item">
+                                        Edit Profile
+                                    </router-link>
+                                </div>
+                            </div>
+                        </div>
                     </li>
                     <li class="nav-item" v-if="applicationStore.isAuthenticated === false">
                         <router-link :to="{ name: 'login' }" class="nav-link text-white"

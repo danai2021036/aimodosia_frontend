@@ -79,6 +79,7 @@ const deleteUser = async (userid) => {
                                     <td>{{ user.email }}</td>
                                     <td>
                                         <RouterLink :to="{
+
                                                 name: 'user-details',
                                                 params: { id: user.id }}">
                                             Edit Roles
@@ -86,6 +87,7 @@ const deleteUser = async (userid) => {
                                     </td>
                                     <td>
                                         <RouterLink :to="{
+                                            path: '/edit',
                                                 name: 'user-edit',
                                                 params: { id: user.id }}">
                                             Edit User

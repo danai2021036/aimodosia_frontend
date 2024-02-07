@@ -10,7 +10,7 @@ const formDataRef = ref({
         "phone": "",
         "sex": "",
         "last_donation": "",
-        "age": 0,
+        "age": "",
         "location": "",
         "amka": ""
     },
