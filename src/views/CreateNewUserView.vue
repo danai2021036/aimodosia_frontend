@@ -14,7 +14,16 @@ const methodRef = ref("POST");
 
 const { data, performRequest } = useRemoteData(urlRef, authRef, methodRef, formDataRef);
 
+const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
+    return emailRegex.test(email);
+};
+
 const onSubmit = async () => {
+    if (formDataRef.value.email && !isValidEmail(formDataRef.value.email)) {
+        alert('Provide a valid email!');
+        return;
+    }
     await performRequest();
 };
 </script>
@@ -40,8 +49,8 @@ const onSubmit = async () => {
             <label for="username">Username</label>
             <input class="form-control" id="username" v-model="formDataRef.username" type="text" />
         </div>
-        <div class="mb-2">
-            <label for="email">Email</label>
+        <div class="mb-2" :class="{ 'has-error2': formDataRef.email && !isValidEmail(formDataRef.email)}">
+            <label for="email">Email: </label>
             <input class="form-control" id="email" v-model="formDataRef.email" type="email" />
         </div>
         <div class="mb-2">
@@ -53,3 +62,10 @@ const onSubmit = async () => {
         </div>
     </div>
 </template>
+
+
+<style>
+.has-error2 input[type="email"] {
+    border-color: red;
+}
+</style>

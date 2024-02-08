@@ -17,7 +17,15 @@ onMounted(()=>{
 })
 const token = store.userData.accessToken;
 
+const isValidText = (text) => {
+    // Regular expression to match only text with spaces and no numbers
+    return /^[A-Za-z\s]*$/.test(text);
+};
 const onSubmit = async() => {
+    if (formDataRef.value.location && !isValidText(formDataRef.value.location)) {
+        alert('Location should not contain numbers!');
+        return;
+    }
     try {
         const response = await fetch(`http://localhost:9090/donationrequest/${userId.value}/new`, {
         method: 'POST',
@@ -41,6 +49,9 @@ const onSubmit = async() => {
 }
 };
 
+
+
+
 </script>
 
 
@@ -56,7 +67,7 @@ const onSubmit = async() => {
             <label for="date">Date</label>
             <input class="form-control" id="date" v-model="formDataRef.date" type="date" />
         </div>
-        <div class="mb-2">
+        <div class="mb-2" :class="{ 'has-error': formDataRef.location && !isValidText(formDataRef.location)}">
             <label for="location">Location</label>
             <input class="form-control" id="location" v-model="formDataRef.location" type="text" />
         </div>
@@ -65,3 +76,9 @@ const onSubmit = async() => {
         </div>
     </div>
 </template>
+
+<style>
+.has-error input[type="text"] {
+    border-color: red;
+}
+</style>

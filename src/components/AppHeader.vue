@@ -47,7 +47,7 @@ const applicationStore = useApplicationStore();
                             </div>
                         </div>
                     </li>
-                    <li class="nav-item" v-if="applicationStore.isAuthenticated === true && !(applicationStore.userRole.includes('aimodotis') && applicationStore.userRole.includes('user'))">
+                    <li class="nav-item" v-if="applicationStore.isAuthenticated === true && !(applicationStore.userRole.includes('aimodotis') && applicationStore.userRole.includes('user')  || applicationStore.userRole.includes('admin'))">
                         <div class="nav-item dropdown">
                             <a
                                 class="nav-link dropdown-toggle text-white"
@@ -73,7 +73,7 @@ const applicationStore = useApplicationStore();
                             </div>
                         </div>
                     </li>
-                    <li class="nav-item" v-if="applicationStore.isAuthenticated === true && applicationStore.userRole.includes('admin') || applicationStore.userRole.includes('secretary') || applicationStore.userRole.includes('aimodotis')">
+                    <li class="nav-item" v-if="applicationStore.isAuthenticated === true && applicationStore.userRole.includes('secretary') || applicationStore.userRole.includes('aimodotis')">
                         <div class="nav-item dropdown">
                             <a
                                 class="nav-link dropdown-toggle text-white"
@@ -91,7 +91,7 @@ const applicationStore = useApplicationStore();
                                         Available Donations
                                     </router-link>
                                 </div>
-                                <div v-if="applicationStore.userRole.includes('admin') || applicationStore.userRole.includes('secretary')">
+                                <div v-if="applicationStore.userRole.includes('secretary')">
                                     <router-link :to="{name:'show-donation-requests'}" class="dropdown-item" >
                                         Show/Add Donation Requests
                                     </router-link>

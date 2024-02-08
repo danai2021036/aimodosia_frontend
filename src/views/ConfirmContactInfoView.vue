@@ -44,6 +44,7 @@ const confirmInfo = async () => {
             const errordata = await response.text();
             // Handle error
             console.error('Error confirming contact info', errordata);
+            alert('Error! Your application form is not accepted yet or might not exist!');
         }
     } catch (error) {
         console.error('An unexpected error occurred:', error);

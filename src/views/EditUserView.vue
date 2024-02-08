@@ -32,7 +32,16 @@ onMounted(() => {
     performRequest();
 });
 
+const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
+    return emailRegex.test(email);
+};
+
 const submitForm = () =>{
+    if (formDataRef.value.email && !isValidEmail(formDataRef.value.email)) {
+        alert('Provide a valid email!');
+        return;
+    }
     updateUserRemoteData.performRequest();
     alert('User updated successfully!');
 
@@ -54,10 +63,20 @@ const submitForm = () =>{
     </div>
     <div>
         <p>You can update any field</p>
-        <label for="username">Username: </label>
-        <input type="text" id="username" v-model="formDataRef.username"/>
-        <label for="email">Email: </label>
-        <input type="text" id="email" v-model="formDataRef.email"/>
+        <div class="mb-2">
+            <label for="username">Username: </label>
+            <input class="form-control" type="text" id="username" v-model="formDataRef.username"/>
+        </div>
+        <div class="mb-2" :class="{ 'has-error2': formDataRef.email && !isValidEmail(formDataRef.email)}">
+            <label for="email">Email: </label>
+            <input class="form-control" id="email" v-model="formDataRef.email" type="email" />
+        </div>
         <button @click="submitForm" type="submit">Submit</button>
     </div>
 </template>
+
+<style>
+.has-error2 input[type="email"] {
+    border-color: red;
+}
+</style>
