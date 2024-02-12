@@ -52,15 +52,15 @@ onMounted(() => {
                                 <td>{{ aimodotis.age }}</td>
                                 <td>{{ aimodotis.location }}</td>
                                 <td>{{ aimodotis.amka }}</td>
-<!--                                <td>-->
-<!--                                    <RouterLink-->
-<!--                                        :to="{-->
-<!--                                                name: 'bloodtest-details',-->
-<!--                                                params: { id: aimodotis.id }-->
-<!--                                            }"-->
-<!--                                    >Display</RouterLink-->
-<!--                                    >-->
-<!--                                </td>-->
+                                <!--                                <td>-->
+                                <!--                                    <RouterLink-->
+                                <!--                                        :to="{-->
+                                <!--                                                name: 'bloodtest-details',-->
+                                <!--                                                params: { id: aimodotis.id }-->
+                                <!--                                            }"-->
+                                <!--                                    >Display</RouterLink-->
+                                <!--                                    >-->
+                                <!--                                </td>-->
                             </tr>
                             </tbody>
                         </table>

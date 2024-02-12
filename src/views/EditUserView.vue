@@ -3,6 +3,7 @@ import { ref, computed, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useRemoteData } from '@/composables/useRemoteData.js';
 import { useApplicationStore } from '@/stores/application.js';
+
 const formDataRef = ref({
     "username": "",
     "email": ""
@@ -20,9 +21,8 @@ const authRef2 = ref(true);
 
 const userIdRef = ref(null);
 
-const updateUserRemoteData = useRemoteData(urlRef,authRef,methodRef, formDataRef);
-const {data, loading, performRequest} = useRemoteData(urlRef2, authRef2);
-
+const updateUserRemoteData = useRemoteData(urlRef, authRef, methodRef, formDataRef);
+const { data, loading, performRequest } = useRemoteData(urlRef2, authRef2);
 
 
 onMounted(() => {
@@ -37,7 +37,7 @@ const isValidEmail = (email) => {
     return emailRegex.test(email);
 };
 
-const submitForm = () =>{
+const submitForm = () => {
     if (formDataRef.value.email && !isValidEmail(formDataRef.value.email)) {
         alert('Provide a valid email!');
         return;
@@ -52,20 +52,20 @@ const submitForm = () =>{
 <template>
     <div class="mb-4">
         <h>These are the user's details</h>
-            <tbody v-if="loading">
-            <tr>
-                <td colspan="5">Loading...</td>
-            </tr>
-            </tbody>
-            <tbody v-if="data">
-                    <p><b>Username:</b> {{ data.username}}    <b>Email:</b> {{ data.email }}</p>
-            </tbody>
+        <tbody v-if="loading">
+        <tr>
+            <td colspan="5">Loading...</td>
+        </tr>
+        </tbody>
+        <tbody v-if="data">
+        <p><b>Username:</b> {{ data.username }} <b>Email:</b> {{ data.email }}</p>
+        </tbody>
     </div>
     <div>
         <p>You can update any field</p>
         <div class="mb-2">
             <label for="username">Username: </label>
-            <input class="form-control" type="text" id="username" v-model="formDataRef.username"/>
+            <input class="form-control" type="text" id="username" v-model="formDataRef.username" />
         </div>
         <div class="mb-2" :class="{ 'has-error2': formDataRef.email && !isValidEmail(formDataRef.email)}">
             <label for="email">Email: </label>

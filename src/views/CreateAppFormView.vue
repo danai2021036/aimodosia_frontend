@@ -55,7 +55,7 @@ const isValidEmail = (email) => {
     return emailRegex.test(email);
 };
 
-const onSubmit = () => {
+const onSubmit = async() => {
     if (formDataRef.value.aimodotis.phone && !isValidPhoneNumber(formDataRef.value.aimodotis.phone)) {
         alert('Please enter a valid 10-digit phone number.');
         return;
@@ -92,7 +92,7 @@ const onSubmit = () => {
         alert('Provide a valid email!');
         return;
     }
-    performRequest();
+    await performRequest();
 };
 </script>
 
@@ -100,8 +100,16 @@ const onSubmit = () => {
     <div class="container mb-4">
         <h1>New Aimodotis</h1>
     </div>
+    <!--    <div>-->
+    <!--        <pre>{{ data }}</pre>-->
+    <!--    </div>-->
     <div>
-        <pre>{{ data }}</pre>
+        <div v-if="data && data.success" class="alert alert-success">
+            App Form Submitted Successfully!
+        </div>
+        <div v-else-if="data && data.error" class="alert alert-danger">
+            User's email doesnt match with the App Form or aimodotis already exists.
+        </div>
     </div>
     <div class="container mb-4">
         <div class="mb-2" :class="{ 'has-error': formDataRef.aimodotis.fname && !isValidText(formDataRef.aimodotis.fname) }">

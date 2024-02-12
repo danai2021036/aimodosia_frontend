@@ -18,7 +18,6 @@ const isValidEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
     return emailRegex.test(email);
 };
-
 const onSubmit = async () => {
     if (formDataRef.value.email && !isValidEmail(formDataRef.value.email)) {
         alert('Provide a valid email!');
@@ -32,11 +31,10 @@ const onSubmit = async () => {
     <div class="container mb-4">
         <h1>New User</h1>
     </div>
+    <!--    <div>-->
+    <!--        <pre>{{ data }}</pre>-->
+    <!--    </div>-->
     <div>
-        <pre>{{ data }}</pre>
-    </div>
-    <div>
-        <!-- Display a success or error message to the user -->
         <div v-if="data && data.success" class="alert alert-success">
             Form submitted successfully!
         </div>

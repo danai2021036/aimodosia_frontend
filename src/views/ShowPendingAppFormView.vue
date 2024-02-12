@@ -23,18 +23,18 @@ const acceptAppForm = async () => {
                 'Authorization': `Bearer ${token}`,
             },
         });
-    if (response.ok) {
-        const data = await response.json();
-        console.log(data); // Log the response data if needed
-        // Handle success, update UI or perform other actions
-        alert('Application Accepted !');
-    } else {
-        // Handle error
-        console.error('Error accepting application');
+        if (response.ok) {
+            const data = await response.json();
+            console.log(data); // Log the response data if needed
+            // Handle success, update UI or perform other actions
+            alert('Application Accepted !');
+        } else {
+            // Handle error
+            console.error('Error accepting application');
+        }
+    } catch (error) {
+        console.error('An unexpected error occurred:', error);
     }
-} catch (error) {
-    console.error('An unexpected error occurred:', error);
-}
 };
 
 const declineAppForm = async () => {
@@ -71,7 +71,8 @@ const declineAppForm = async () => {
                 <div class="col-12">
                     <div class="mb-4">
                         <RouterLink class="small" :to="{ name: 'appforms-pending' }"
-                        >Back to App Forms</RouterLink
+                        >Back to App Forms
+                        </RouterLink
                         >
                         <h1 class="fs-3">App Form #{{ appFormIdRef }}</h1>
                     </div>
@@ -81,7 +82,8 @@ const declineAppForm = async () => {
                                 <RouterLink
                                     class="nav-link"
                                     :to="{ name: 'appform-pending-details', params: { id: appFormIdRef } }"
-                                >Details</RouterLink
+                                >Details
+                                </RouterLink
                                 >
                             </li>
                             <b-button @click="acceptAppForm" class="btn btn-success">

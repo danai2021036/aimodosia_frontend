@@ -76,18 +76,18 @@ const updateDonationRequestId = (id) => {
                             <tr v-for="donationrequest in data">
                                 <td>{{ donationrequest.date }}</td>
                                 <td>{{ donationrequest.location }}</td>
-                                <td>{{updateDonationRequestId(donationrequest.id)}}</td>
+                                <td>{{ updateDonationRequestId(donationrequest.id) }}</td>
                                 <b-button @click="acceptDonationRequest" class="btn btn-success">
                                     Accept
                                 </b-button>
                             </tr>
                             </tbody>
                         </table>
-<!--                        <router-link :to="{-->
-<!--                                            name: 'create-donation-request'-->
-<!--                                        }">-->
-<!--                            <b-button class="btn-success"> Create new donation request</b-button>-->
-<!--                        </router-link>-->
+                        <!--                        <router-link :to="{-->
+                        <!--                                            name: 'create-donation-request'-->
+                        <!--                                        }">-->
+                        <!--                            <b-button class="btn-success"> Create new donation request</b-button>-->
+                        <!--                        </router-link>-->
                     </div>
                 </div>
             </div>

@@ -63,7 +63,8 @@ const updateAimodotisId = (id) => {
                 <div class="col-12">
                     <div class="mb-4">
                         <RouterLink class="small" :to="{ name: 'home' }"
-                        >Home</RouterLink
+                        >Home
+                        </RouterLink
                         >
                         <h1 class="fs-3">Aimodotis #{{ aimodotisIdRef }}</h1>
                     </div>
@@ -101,7 +102,7 @@ const updateAimodotisId = (id) => {
                                     <td>{{ aimodotis.age }}</td>
                                     <td>{{ aimodotis.location }}</td>
                                     <td>{{ aimodotis.amka }}</td>
-                                    <td>{{updateAimodotisId(aimodotis.id)}}</td>
+                                    <td>{{ updateAimodotisId(aimodotis.id) }}</td>
                                 </template>
                             </tr>
                             </tbody>

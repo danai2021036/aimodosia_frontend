@@ -41,7 +41,10 @@ export function useRemoteData(urlRef, authRef, methodRef = ref("GET"), bodyRef =
                         });
                     }
                 } else {
-                    throw new Error('Network response was not ok');
+                    return response.text().then((text) => {
+                        data.value = { error: true, message: text };
+                    });
+                    // throw new Error('Network response was not ok');
                 }
             })
             .catch((err) => {
