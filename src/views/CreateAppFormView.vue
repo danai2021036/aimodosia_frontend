@@ -156,9 +156,9 @@ const onSubmit = async() => {
             <label for="details">Blood Test Details</label>
             <input class="form-control" id="details" v-model="formDataRef.bloodTest.details" type="text" />
         </div>
-        <div class="mb-2" :class="{ 'has-error': formDataRef.bloodTest.bloodType && !isValidBloodType(formDataRef.bloodTest.bloodType) }">
+        <div class="mb-2" :class="{ 'has-error': formDataRef.bloodTest.bloodtype && !isValidBloodType(formDataRef.bloodTest.bloodtype) }">
             <label class="mb-1" for="bloodType">Blood Type: </label>
-            <input type="text" class="form-control" id="bloodType" v-model="formDataRef.bloodTest.bloodType"/>
+            <input type="text" class="form-control" id="bloodType" v-model="formDataRef.bloodTest.bloodtype"/>
         </div>
         <div class="">
             <button class="btn btn-primary" @click="onSubmit" type="button">Submit Form</button>
