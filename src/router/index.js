@@ -114,6 +114,12 @@ const router = createRouter({
             meta: { requiresAuth: true }
         },
         {
+            path: '/aimodotis/mydonations',
+            name: 'aimodotis-mydonations',
+            component: () => import('../views/MyDonationsView.vue'),
+            meta: { requiresAuth: true }
+        },
+        {
             path: '/login',
             name: 'login',
             component: () => import('../views/LoginView.vue')

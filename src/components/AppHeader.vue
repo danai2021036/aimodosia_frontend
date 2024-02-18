@@ -147,6 +147,11 @@ const applicationStore = useApplicationStore();
                                         Edit Profile
                                     </router-link>
                                 </div>
+                                <div v-if="applicationStore.userRole.includes('aimodotis')">
+                                    <router-link :to="{name:'aimodotis-mydonations'}" class="dropdown-item">
+                                        My Donations
+                                    </router-link>
+                                </div>
                             </div>
                         </div>
                     </li>
