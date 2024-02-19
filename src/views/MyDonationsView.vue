@@ -43,7 +43,7 @@ const updateAimodotisId = (id) => {
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>Upcoming Donation Date</th>
+                                <th>Donation Date</th>
                                 <th>Location</th>
                             </tr>
                             </thead>
