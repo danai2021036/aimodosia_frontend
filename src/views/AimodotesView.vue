@@ -2,7 +2,7 @@
 import { onMounted, ref } from 'vue';
 import { useRemoteData } from '@/composables/useRemoteData.js';
 const backendEnvVar = import.meta.env.BACKEND;
-const urlRef = ref(backendEnvVar+'/api/aimodotis');
+const urlRef = ref(backendEnvVar+'/aimodotis');
 const authRef = ref(true);
 const { data, loading, performRequest } = useRemoteData(urlRef, authRef);
 
