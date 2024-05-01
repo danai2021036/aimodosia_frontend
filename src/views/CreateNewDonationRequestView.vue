@@ -85,7 +85,7 @@
 import { ref, computed, onMounted } from 'vue';
 import { useRemoteData } from '@/composables/useRemoteData.js';
 import { useApplicationStore } from '@/stores/application.js';
-const backendEnvVar = import.meta.env.BACKEND;
+const backendEnvVar = import.meta.env.VITE_BACKEND;
 const formDataRef = ref({
     "date": "",
     "location": ""
@@ -108,7 +108,7 @@ const isValidText = (text) => {
 
 onMounted(() => {
     userIdRef.value = store.userData.id;
-    urlRef.value = '{{backendEnvVar}}'+'/donationrequest/' + userIdRef.value + '/new';
+    urlRef.value = backendEnvVar+'/api/donationrequest/' + userIdRef.value + '/new';
 });
 
 

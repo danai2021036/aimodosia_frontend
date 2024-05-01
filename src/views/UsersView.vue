@@ -3,13 +3,13 @@ import { ref, onMounted, computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useApplicationStore } from '@/stores/application.js';
 import { useRemoteData } from '@/composables/useRemoteData.js';
-const backendEnvVar = import.meta.env.BACKEND;
+const backendEnvVar = import.meta.env.VITE_BACKEND;
 const router = useRouter();
 const route = useRoute();
 const store = useApplicationStore();
 
 const userIdRef = ref(null);
-const urlRef = ref('{{backendEnvVar}}'+'/admin/users');
+const urlRef = ref(backendEnvVar+'/api/admin/users');
 const authRef = ref(true);
 const { data, loading, performRequest } = useRemoteData(urlRef, authRef);
 
@@ -22,7 +22,7 @@ const token = store.userData.accessToken;
 
 const deleteUser = async (userid) => {
     try {
-        const response = await fetch(`${backendEnvVar}/admin/user/delete/${userid}`, {
+        const response = await fetch(`${backendEnvVar}/api/admin/user/delete/${userid}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

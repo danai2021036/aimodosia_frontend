@@ -2,13 +2,13 @@
 import { ref, computed, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useRemoteData } from '@/composables/useRemoteData.js';
-const backendEnvVar = import.meta.env.BACKEND;
+const backendEnvVar = import.meta.env.VITE_BACKEND;
 const router = useRouter();
 const route = useRoute();
 
 const appFormIdRef = ref(null);
 const urlRef = computed(() => {
-    return '{{backendEnvVar}}'+'/secretary/appform/' + appFormIdRef.value;
+    return backendEnvVar+'/api/secretary/appform/' + appFormIdRef.value;
 });
 const authRef = ref(true);
 const { data, loading, performRequest } = useRemoteData(urlRef, authRef);

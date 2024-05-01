@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import { useRemoteData } from "@/composables/useRemoteData.js";
-const backendEnvVar = import.meta.env.BACKEND;
+const backendEnvVar = import.meta.env.VITE_BACKEND;
 const formDataRef = ref({
     "aimodotis":{
         "fname": "",
@@ -21,7 +21,7 @@ const formDataRef = ref({
     }
 });
 
-const urlRef = ref('{{backendEnvVar}}'+'/appform/new');
+const urlRef = ref(backendEnvVar+'/api/appform/new');
 const authRef = ref(true);
 const methodRef = ref("POST");
 

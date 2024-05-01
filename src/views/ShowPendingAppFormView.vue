@@ -2,7 +2,7 @@
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { useApplicationStore } from '@/stores/application.js';
-const backendEnvVar = import.meta.env.BACKEND;
+const backendEnvVar = import.meta.env.VITE_BACKEND;
 const route = useRoute();
 const store = useApplicationStore();
 
@@ -16,7 +16,7 @@ onMounted(() => {
 const token = store.userData.accessToken;
 const acceptAppForm = async () => {
     try {
-        const response = await fetch(`${backendEnvVar}/secretary/appform/pending/${appFormIdRef.value}/accept`, {
+        const response = await fetch(`${backendEnvVar}/api/secretary/appform/pending/${appFormIdRef.value}/accept`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ const acceptAppForm = async () => {
 
 const declineAppForm = async () => {
     try {
-        const response = await fetch(`${backendEnvVar}/secretary/appform/pending/${appFormIdRef.value}/decline`, {
+        const response = await fetch(`${backendEnvVar}/api/secretary/appform/pending/${appFormIdRef.value}/decline`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
