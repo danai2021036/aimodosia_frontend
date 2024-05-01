@@ -3,7 +3,7 @@ import { ref, computed, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useRemoteData } from '@/composables/useRemoteData.js';
 import { useApplicationStore } from '@/stores/application.js';
-
+const backendEnvVar = import.meta.env.BACKEND;
 const formDataRef = ref({
     "username": "",
     "email": ""
@@ -27,8 +27,8 @@ const { data, loading, performRequest } = useRemoteData(urlRef2, authRef2);
 
 onMounted(() => {
     userIdRef.value = route.params.id;
-    urlRef.value = 'http://localhost:9090/admin/user/update/' + userIdRef.value;
-    urlRef2.value = 'http://localhost:9090/admin/users/' + userIdRef.value;
+    urlRef.value = '{{backendEnvVar}}'+'/admin/user/update/' + userIdRef.value;
+    urlRef2.value = '{{backendEnvVar}}'+'/admin/users/' + userIdRef.value;
     performRequest();
 });
 

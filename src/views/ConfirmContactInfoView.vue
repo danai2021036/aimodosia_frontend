@@ -3,7 +3,7 @@ import { ref, onMounted, computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useApplicationStore } from '@/stores/application.js';
 import { useRemoteData } from '@/composables/useRemoteData.js';
-
+const backendEnvVar = import.meta.env.BACKEND;
 const router = useRouter();
 const route = useRoute();
 const store = useApplicationStore();
@@ -12,7 +12,7 @@ const aimodotisIdRef = ref(null);
 // const urlRef = computed(()=> {
 //     return 'http://localhost:9090/aimodotis/' + aimodotisIdRef.value;
 // });
-const urlRef = ref('http://localhost:9090/aimodotis');
+const urlRef = ref('{{backendEnvVar}}'+'/aimodotis');
 
 const authRef = ref(true);
 const {data, loading, performRequest} = useRemoteData(urlRef, authRef);
@@ -27,7 +27,7 @@ const token = store.userData.accessToken;
 
 const confirmInfo = async () => {
     try {
-        const response = await fetch(`http://localhost:9090/aimodotis/confirmcontactinfo/${aimodotisIdRef.value}`, {
+        const response = await fetch(`${backendEnvVar}/aimodotis/confirmcontactinfo/${aimodotisIdRef.value}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

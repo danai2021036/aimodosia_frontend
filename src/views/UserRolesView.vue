@@ -3,14 +3,14 @@ import { ref, computed, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useRemoteData } from '@/composables/useRemoteData.js';
 import { useApplicationStore } from '@/stores/application.js';
-
+const backendEnvVar = import.meta.env.BACKEND;
 const router = useRouter();
 const route = useRoute();
 const store = useApplicationStore();
 
 const userIdRef = ref(null);
 const urlRef = computed(() => {
-    return 'http://localhost:9090/admin/roles';
+    return '{{backendEnvVar}}'+'/admin/roles';
 });
 const authRef = ref(true);
 const { data, loading, performRequest } = useRemoteData(urlRef, authRef);
@@ -23,7 +23,7 @@ onMounted(() => {
 const token = store.userData.accessToken;
 const addRole = async (roleid) => {
     try {
-        const response = await fetch(`http://localhost:9090/admin/addroles/${userIdRef.value}/${roleid}`, {
+        const response = await fetch(`${backendEnvVar}/admin/addroles/${userIdRef.value}/${roleid}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ const addRole = async (roleid) => {
 
 const deleteRole = async (roleid) => {
     try {
-        const response = await fetch(`http://localhost:9090/admin/deleteroles/${userIdRef.value}/${roleid}`, {
+        const response = await fetch(`${backendEnvVar}/admin/deleteroles/${userIdRef.value}/${roleid}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
