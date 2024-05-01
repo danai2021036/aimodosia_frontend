@@ -1,4 +1,5 @@
 <script setup>
+// hi
 import { onMounted, ref } from 'vue';
 import { useRemoteData } from '@/composables/useRemoteData.js';
 const backendEnvVar = import.meta.env.VITE_BACKEND;
