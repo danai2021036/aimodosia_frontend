@@ -95,3 +95,8 @@ const updateAimodotisId = (id) => {
     </div>
 </template>
 
+<style scoped>
+.border-danger {
+    border: 2px solid red;
+}
+</style>
