@@ -10,12 +10,14 @@ const store = useApplicationStore();
 const aimodotisIdRef = ref(null);
 
 const formDataRef = ref({
+    "date" : "",
     "details" : ""
 });
 const urlRef2 = ref(null);
 const authRef2 = ref(true);
 const urlRef = ref(backendEnvVar+'/api/aimodotis');
 const methodRef2 = ref('POST');
+const dateInvalid = ref(false);
 
 const authRef = ref(true);
 const {data, loading, performRequest} = useRemoteData(urlRef, authRef);
@@ -30,6 +32,11 @@ onMounted(() => {
 const submitForm = () =>{
     if (!formDataRef.value.details) {
         alert('You didn\'t put anything in the form');
+        return;
+    }
+    if (!formDataRef.value.date) {
+        dateInvalid.value = true;
+        alert('Please select a date');
         return;
     }
     urlRef2.value = backendEnvVar+'/api/aimodotis/updatebloodtest/' + aimodotisIdRef.value;
@@ -73,6 +80,11 @@ const updateAimodotisId = (id) => {
                             <div class="mb-2">
                                 <label class="mb-1" for="details">Details: </label>
                                 <input type="text" class="form-control" id="details" v-model="formDataRef.details"/>
+                            </div>
+                            <div class="mb-2">
+                                <label class="mb-1" for="date">Date: </label>
+                                <input type="date" class="form-control" id="date" v-model="formDataRef.date"
+                                       :class="{ 'border-danger': dateInvalid }" />
                             </div>
                             <button @click="submitForm" type="submit">Submit</button>
                         </div>
