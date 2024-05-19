@@ -62,13 +62,12 @@ const updateAimodotisId = (id) => {
                                 <td colspan="5">Loading...</td>
                             </tr>
                             </tbody>
-                            <tbody v-if="data">
                             <tr v-for="aimodotis in data">
                                 <template v-if="aimodotis.email===store.userData.email">
                                     <td>{{updateAimodotisId(aimodotis.id)}}</td>
                                 </template>
                             </tr>
-                            </tbody>
+                        </table>
                         <div>
                             <p>You can update your details here</p>
                             <div class="mb-2">
@@ -77,7 +76,6 @@ const updateAimodotisId = (id) => {
                             </div>
                             <button @click="submitForm" type="submit">Submit</button>
                         </div>
-                        </table>
                     </div>
                 </div>
             </div>
