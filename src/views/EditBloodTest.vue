@@ -18,6 +18,7 @@ const authRef2 = ref(true);
 const urlRef = ref(backendEnvVar+'/api/aimodotis');
 const methodRef2 = ref('POST');
 const dateInvalid = ref(false);
+const today = new Date().toISOString().split('T')[0];
 
 const authRef = ref(true);
 const {data, loading, performRequest} = useRemoteData(urlRef, authRef);
@@ -39,6 +40,7 @@ const submitForm = () =>{
         alert('Please select a date');
         return;
     }
+    dateInvalid.value = false;
     urlRef2.value = backendEnvVar+'/api/aimodotis/updatebloodtest/' + aimodotisIdRef.value;
     updateBloodTestRemoteData.performRequest();
     alert('Your Blood Test Information was updated successfully!');
@@ -84,7 +86,7 @@ const updateAimodotisId = (id) => {
                             <div class="mb-2">
                                 <label class="mb-1" for="date">Date: </label>
                                 <input type="date" class="form-control" id="date" v-model="formDataRef.date"
-                                       :class="{ 'border-danger': dateInvalid }" />
+                                       :max="today" :class="{ 'border-danger': dateInvalid }" />
                             </div>
                             <button @click="submitForm" type="submit">Submit</button>
                         </div>
