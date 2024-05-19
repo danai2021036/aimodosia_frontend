@@ -28,6 +28,10 @@ onMounted(() => {
 
 
 const submitForm = () =>{
+    if (!formDataRef.value.details) {
+        alert('You didn\'t put anything in the form');
+        return;
+    }
     urlRef2.value = backendEnvVar+'/api/aimodotis/updatebloodtest/' + aimodotisIdRef.value;
     updateBloodTestRemoteData.performRequest();
     alert('Your Blood Test Information was updated successfully!');
@@ -53,11 +57,6 @@ const updateAimodotisId = (id) => {
                     </div>
                     <div class="mb-4">
                         <table class="table">
-                            <thead>
-                            <tr>
-                                <th>ID</th>
-                            </tr>
-                            </thead>
                             <tbody v-if="loading">
                             <tr>
                                 <td colspan="5">Loading...</td>
@@ -73,9 +72,9 @@ const updateAimodotisId = (id) => {
                         </table>
                         <div>
                             <p>You can update your details here</p>
-                            <div class="mb-2" :class="{ 'has-error': formDataRef.details }">
+                            <div class="mb-2">
                                 <label class="mb-1" for="details">Details: </label>
-                                <input type="text" class="form-control" id="location" v-model="formDataRef.details"/>
+                                <input type="text" class="form-control" id="details" v-model="formDataRef.details"/>
                             </div>
                             <button @click="submitForm" type="submit">Submit</button>
                         </div>
@@ -86,11 +85,3 @@ const updateAimodotisId = (id) => {
     </div>
 </template>
 
-<style>
-.has-error input[type="text"] {
-    border-color: red;
-}
-.has-error1 input[type="number"] {
-    border-color: red;
-}
-</style>
