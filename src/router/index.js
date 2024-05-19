@@ -120,6 +120,12 @@ const router = createRouter({
             meta: { requiresAuth: true }
         },
         {
+            path: '/aimodotis/editbloodtest',
+            name: 'aimodotis-bloodtest',
+            component: () => import('../views/EditBloodTest.vue'),
+            meta: { requiresAuth: true }
+        },
+        {
             path: '/login',
             name: 'login',
             component: () => import('../views/LoginView.vue')

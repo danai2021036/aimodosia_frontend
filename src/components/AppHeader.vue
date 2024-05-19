@@ -152,6 +152,11 @@ const applicationStore = useApplicationStore();
                                         My Donations
                                     </router-link>
                                 </div>
+                                <div v-if="applicationStore.userRole.includes('aimodotis')">
+                                    <router-link :to="{name:'aimodotis-bloodtest'}" class="dropdown-item">
+                                        Update Blood Test
+                                    </router-link>
+                                </div>
                             </div>
                         </div>
                     </li>
