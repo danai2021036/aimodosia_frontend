@@ -9,6 +9,9 @@ RUN npm install
 # Copy the rest of the project files to the container
 COPY . .
 
+# Modify the .env file to set VITE_BACKEND
+RUN sed -i 's|VITE_BACKEND=.*|VITE_BACKEND=http://51.103.251.219:9000|' .env
+
 # Build the Vue.js application to the production mode to dist folder
 RUN npm run build
 # Use the lightweight Nginx image from the previous stage for the nginx container
