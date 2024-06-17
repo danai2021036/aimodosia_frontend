@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useRemoteData } from '@/composables/useRemoteData.js';
 import { useApplicationStore } from '@/stores/application.js';
@@ -11,8 +11,6 @@ const formDataRef = ref({
 const urlRef = ref(null);
 const authRef = ref(true);
 const methodRef = ref('POST');
-const store = useApplicationStore();
-const router = useRouter();
 const route = useRoute();
 const urlRef2 = ref(null);
 const authRef2 = ref(true);
