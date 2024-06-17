@@ -3,7 +3,6 @@ import { ref, onMounted, computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useApplicationStore } from '@/stores/application.js';
 import { useRemoteData } from '@/composables/useRemoteData.js';
-const backendEnvVar = import.meta.env.VITE_BACKEND;
 const router = useRouter();
 const route = useRoute();
 const store = useApplicationStore();
@@ -15,7 +14,9 @@ const formDataRef = ref({
 });
 const urlRef2 = ref(null);
 const authRef2 = ref(true);
-const urlRef = ref(backendEnvVar+'/api/aimodotis');
+const urlRef = computed(() => {
+    return '/api/aimodotis';
+});
 const methodRef2 = ref('POST');
 const dateInvalid = ref(false);
 const today = new Date().toISOString().split('T')[0];
@@ -41,7 +42,7 @@ const submitForm = () =>{
         return;
     }
     dateInvalid.value = false;
-    urlRef2.value = backendEnvVar+'/api/aimodotis/updatebloodtest/' + aimodotisIdRef.value;
+    urlRef2.value = '/api/aimodotis/updatebloodtest/' + aimodotisIdRef.value;
     updateBloodTestRemoteData.performRequest();
     alert('Your Blood Test Information was updated successfully!');
 

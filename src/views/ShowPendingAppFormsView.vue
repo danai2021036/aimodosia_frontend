@@ -1,8 +1,9 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import { useRemoteData } from '@/composables/useRemoteData.js';
-const backendEnvVar = import.meta.env.VITE_BACKEND;
-const urlRef = ref(backendEnvVar+'/api/secretary/appforms/pending');
+const urlRef = computed(() => {
+    return '/api/secretary/appforms/pending';
+});
 const authRef = ref(true);
 const { data, loading, performRequest } = useRemoteData(urlRef, authRef);
 

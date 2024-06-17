@@ -3,14 +3,13 @@ import { ref, onMounted, computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useApplicationStore } from '@/stores/application.js';
 import { useRemoteData } from '@/composables/useRemoteData.js';
-const backendEnvVar = import.meta.env.VITE_BACKEND;
 const router = useRouter();
 const store = useApplicationStore();
 const aimodotisIdRef = ref(null);
 
-
-const urlRef = ref(backendEnvVar+'/api/aimodotis');
-
+const urlRef = computed(() => {
+    return '/api/aimodotis';
+});
 
 const authRef = ref(true);
 const {data, loading, performRequest} = useRemoteData(urlRef, authRef);

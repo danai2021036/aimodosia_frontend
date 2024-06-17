@@ -3,14 +3,13 @@ import { ref, computed, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useRemoteData } from '@/composables/useRemoteData.js';
 import { useApplicationStore } from '@/stores/application.js';
-const backendEnvVar = import.meta.env.VITE_BACKEND;
 const router = useRouter();
 const route = useRoute();
 const store = useApplicationStore();
 
 const userIdRef = ref(null);
 const urlRef = computed(() => {
-    return backendEnvVar+'/api/admin/roles';
+    return '/api/admin/roles';
 });
 const authRef = ref(true);
 const { data, loading, performRequest } = useRemoteData(urlRef, authRef);
@@ -23,7 +22,7 @@ onMounted(() => {
 const token = store.userData.accessToken;
 const addRole = async (roleid) => {
     try {
-        const response = await fetch(`${backendEnvVar}/api/admin/addroles/${userIdRef.value}/${roleid}`, {
+        const response = await fetch(`/api/admin/addroles/${userIdRef.value}/${roleid}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -49,7 +48,7 @@ const addRole = async (roleid) => {
 
 const deleteRole = async (roleid) => {
     try {
-        const response = await fetch(`${backendEnvVar}/api/admin/deleteroles/${userIdRef.value}/${roleid}`, {
+        const response = await fetch(`/api/admin/deleteroles/${userIdRef.value}/${roleid}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

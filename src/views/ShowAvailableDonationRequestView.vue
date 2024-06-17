@@ -2,13 +2,13 @@
 import { computed, onMounted, ref } from 'vue';
 import { useRemoteData } from '@/composables/useRemoteData.js';
 import { useApplicationStore } from '@/stores/application.js';
-const backendEnvVar = import.meta.env.VITE_BACKEND;
 //const urlRef = ref('http://localhost:9090/donationrequests/' + userId.value);
 const donationRequestIdRef = ref(null);
 const store = useApplicationStore();
 const urlRef = computed(() => {
-    return  backendEnvVar+'/api/aimodotis/donationrequests/' + userId.value;
+    return '/api/aimodotis/donationrequests/' + userId.value;
 });
+
 const authRef = ref(true);
 const { data, loading, performRequest } = useRemoteData(urlRef, authRef);
 
@@ -24,7 +24,7 @@ const token = store.userData.accessToken;
 
 const acceptDonationRequest = async () => {
     try {
-        const response = await fetch(`${backendEnvVar}/api/aimodotis/donationrequests/${userId.value}/${donationRequestIdRef.value}/accept`, {
+        const response = await fetch(`/api/aimodotis/donationrequests/${userId.value}/${donationRequestIdRef.value}/accept`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
