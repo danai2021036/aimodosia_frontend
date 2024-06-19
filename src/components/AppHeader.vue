@@ -6,7 +6,7 @@ const applicationStore = useApplicationStore();
 
 
 <template>
-    <header class="text-bg-dark">
+    <header class="text-bg-dark bg-dark-red">
         <div class="container">
             <div class="d-flex flex-wrap justify-content-center py-2 px-3">
                 <a
@@ -175,3 +175,9 @@ const applicationStore = useApplicationStore();
         </div>
     </header>
 </template>
+
+<style>
+.bg-dark-red {
+    background-color: darkred;
+}
+</style>
