@@ -4,9 +4,8 @@ import { useApplicationStore } from '@/stores/application.js';
 const applicationStore = useApplicationStore();
 </script>
 
-
 <template>
-    <header class="text-bg-dark">
+    <header class="text-bg-dark-red">
         <div class="container">
             <div class="d-flex flex-wrap justify-content-center py-2 px-3">
                 <a
@@ -24,13 +23,13 @@ const applicationStore = useApplicationStore();
                     <li class="nav-item" v-if="applicationStore.isAuthenticated === true" >
                         <div class="nav-item dropdown" v-if="!(applicationStore.userRole.includes('aimodotis') && applicationStore.userRole.includes('user'))">
                             <a
-                            class="nav-link dropdown-toggle text-white"
-                            href="#"
-                            id="aimodotisDropdown"
-                            role="button"
-                            data-bs-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false">
+                                class="nav-link dropdown-toggle text-white"
+                                href="#"
+                                id="aimodotisDropdown"
+                                role="button"
+                                data-bs-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false">
                                 Aimodotes
                             </a>
                             <div class="dropdown-menu" aria-labelledby="aimodotisDropdown">
@@ -140,7 +139,7 @@ const applicationStore = useApplicationStore();
                                 <div>
                                     <router-link :to="{ name: 'profile' }" class="dropdown-item"
                                     >Profile
-                                        </router-link>
+                                    </router-link>
                                 </div>
                                 <div v-if="applicationStore.userRole.includes('aimodotis')">
                                     <router-link :to="{name:'edit-aimodotis-profile'}" class="dropdown-item">
@@ -177,7 +176,8 @@ const applicationStore = useApplicationStore();
 </template>
 
 <style scoped>
-.text-bg-dark {
-    background-color: #8B0000; 
+.text-bg-dark-red {
+    background-color: darkred;
+    color: white;
 }
 </style>
