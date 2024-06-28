@@ -28,7 +28,7 @@ const { userData } = useApplicationStore();
                                 <p>Ready to make a difference? Sign up today, and together, let's save lives, one donation at a time.</p>
                             </div>
                             <div class="about-image">
-                                <img src="https://voicetrustmadurai.org/wp-content/uploads/2022/03/Blood-Donation-1.jpg" alt="Blood Donation" />
+                                <img src="https://img1.wsimg.com/isteam/ip/0d33a0f8-af75-411c-914c-543fde8fd774/Donate%20Blood%2C%20Save%20Lives.png" alt="Blood Donation" />
                             </div>
                         </div>
                     </div>
